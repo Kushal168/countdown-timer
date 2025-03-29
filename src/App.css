@@ -42,8 +42,8 @@
 }
 
 .input_field{
-  height: 0px;
-  width: 12px;
+  height: 20px;
+  width: 50px;
   margin : 20px;
-  padding : 2rem;
+  padding : 1rem;
 }
