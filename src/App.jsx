@@ -10,13 +10,21 @@ function App() {
   const [second, setSecond] = useState(0)
   const [timerId, setTimerId] = useState(0)
   function handleClick(){
-    setIsStart(true);
+    console.log("===>>> ", hour>0 , minute>0 , second>0)
+    if(hour>0 || minute>0 || second>0)
+      setIsStart(true);
+    else {
+      alert("invalid input")
+      return
+    }
   }
   function handleAll(e){
     console.log("--->> ",e.target.name, e.target.value)
-    if(e.target.name == 'hours') setHour(e.target.value);
-    else if(e.target.name == 'minutes') setMinute(e.target.value);
-    else if(e.target.name == 'seconds') setSecond(e.target.value);
+    if(e.target.value>=0){    
+      if(e.target.name == 'hours') setHour(e.target.value);
+      else if(e.target.name == 'minutes') setMinute(e.target.value);
+      else if(e.target.name == 'seconds') setSecond(e.target.value);
+    }
   }
   function runTimer(sec, min, hr, tid){
     console.log("......")
@@ -31,6 +39,15 @@ function App() {
       setHour((hr)=>hr-1);
       setMinute(59)
       setSecond(59)
+    }
+    if(sec==0 && min ==0 && hr==0){
+      setHour(0)
+      setMinute(0)
+      setSecond(0)
+      clearInterval(tid)
+      alert("Timer Completed")
+      setIsStart(false)
+
     }
     console.log("tiddd", tid)
   }
@@ -58,6 +75,7 @@ function App() {
   return (
     <>
       {!isStart && <div>
+        <div className='countdown'> Countdown Timer</div>
         <div>
           <input className='input_field' type="number" name="hours" onChange = {(e)=>{handleAll(e)}} placeholder='HH'/>
           <input className='input_field' type="number" name="minutes" onChange = {(e)=>{handleAll(e)}} placeholder='MM'/>
