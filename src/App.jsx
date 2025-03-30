@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [isStart, setIsStart] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
   const [hour, setHour] = useState(0)
   const [minute, setMinute] = useState(0)
   const [second, setSecond] = useState(0)
@@ -71,6 +72,18 @@ function App() {
     console.log("****", timerId)
     setIsStart(false);
   }
+  function handlePause(){
+    console.log("****", timerId)
+    setIsPaused(true);
+    clearTimeout(timerId)
+  }
+  function handleResume(){
+    console.log("****", timerId)
+    setIsPaused(false);
+    runTimer(second,minute,hour,timerId);
+    // clearTimeout(timerId)?
+  }
+  
 
   return (
     <>
@@ -100,7 +113,8 @@ function App() {
           <input value={second} className='input_field' type="text" placeholder='SS'/> */}
         </div>
         <div>
-          <button type='button' className='button-div'  onClick={handleClick}> Pause </button>
+          { !isPaused && <button type='button' className='button-div'  onClick={handlePause}> Pause </button>}
+          { isPaused && <button type='button' className='button-div'  onClick={handleResume}> Resume </button>}
           <button type='button' className='button-div' onClick={handleReset}> Restart </button>
         </div>
       </div>
