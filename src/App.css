@@ -47,3 +47,16 @@
   margin : 20px;
   padding : 1rem;
 }
+
+.timer-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+}
+.inside-timer-div{
+  margin: 5px;
+}
+.button-div{
+  margin: 4px;
+}
